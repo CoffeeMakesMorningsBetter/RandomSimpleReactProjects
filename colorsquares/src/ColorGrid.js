@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Square } from './Square'
 
 class ColorGrid extends Component {
   constructor(props) {
@@ -6,11 +7,12 @@ class ColorGrid extends Component {
     this.state = {
       colors: ["Blue", "Aqua", "Aquamarine","BlueViolet","pink","red","green","DarkSeaGreen","DarkTurquoise"]
     }
+    this.changeAllColors.bind(this)
   }
 
   changeAllColors = () => {
     let colors =  []
-    for(let i = 0; i <= 9; i++) {
+    for(let i = 0; i < 9; i++) {
       colors.push(this.props.colors[Math.floor(Math.random() * this.props.colors.length)])
     }
     this.setState({colors})
@@ -23,16 +25,31 @@ class ColorGrid extends Component {
   }
 
   render() {
+    const squares = this.state.colors.map((color,idx) => {
+      return <Square 
+        color={color} 
+        key={idx} 
+        changeAllColors={this.changeAllColors}
+        changeSingleColor={this.changeSingleColor.bind(this,idx)}
+        />
+    })
+
     const container = {
+      margin: "0 auto",
       display: "flex",
-      wdith: "800px",
-      height: "800px",
-      flexWrap: "wrap"
+      width: "750px",
+      height: "750px",
+      flexWrap: "wrap",
+      border: "black 5px solid"
     }
     return (
-      <div style={{container}}>
-
+      <div>
+      <h1 style={{textAlign: "center"}}>Color Squares</h1>
+      <div style={container}>
+      {squares}
+       </div>
       </div>
+
     );
   }
 }
