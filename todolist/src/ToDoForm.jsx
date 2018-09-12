@@ -4,7 +4,8 @@ class ToDoForm extends Component {
   constructor(props){
     super(props)
     this.state = {
-      todo: ""
+      person: "",
+      hobby: ""
     }
     this.handleChanges.bind(this)
     this.handleSubmit.bind(this)
@@ -16,21 +17,31 @@ class ToDoForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.addToDo({...this.state})
-    this.setState({todo: ""})
+    this.props.addToDo({
+      person: this.state.person, 
+      hobby: this.state.hobby.split(",")
+    })
+    this.setState({person: "", hobby:""})
   }
 
   render() {
     return(
       <form onSubmit={this.handleSubmit}>
-        <label>
+        <label>Name</label>
           <input
-          name="todo"
+          type="text"
+          name="person"
           value={this.state.todo}
           onChange={this.handleChanges}
           />
-        </label>
-        <button type="submit">Enter Awesome Todo</button>
+        <label>Hobbies</label>
+          <input
+          type="text"
+          name="hobby"
+          value={this.state.hobby}
+          onChange={this.handleChanges}
+          />
+        <button type="submit">Enter Awesomeness</button>
       </form>
     )
   }

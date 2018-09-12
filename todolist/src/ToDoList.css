@@ -1,0 +1,24 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  justify-content: center;
+}
+
+form > label, form > input {
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.ToDo {
+  width: 350px;
+  margin: 5px 0;
+  padding: 15px 15px 15px 15px;
+  border: 1px solid black;
+}
+
