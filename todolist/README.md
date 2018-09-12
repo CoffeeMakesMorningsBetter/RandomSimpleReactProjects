@@ -1,4 +1,10 @@
-# To Do List React 
+# Hobby List React 
 
-## Goal: Use Forms In React
+## Goals
+
+1. Forms - Controlled Componet
+2. Events
+3. Passing Functions As Props
+
+
 
