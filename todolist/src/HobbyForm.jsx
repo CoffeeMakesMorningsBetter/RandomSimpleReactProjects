@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ToDoForm extends Component {
+class HobbyForm extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -17,11 +17,11 @@ class ToDoForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.addToDo({
+    this.props.addPerson({
       person: this.state.person, 
       hobby: this.state.hobby.split(",")
     })
-    this.setState({person: "", hobby:""})
+    this.setState({person: "", hobby: ""})
   }
 
   render() {
@@ -31,7 +31,7 @@ class ToDoForm extends Component {
           <input
           type="text"
           name="person"
-          value={this.state.todo}
+          value={this.state.person}
           onChange={this.handleChanges}
           />
         <label>Hobbies</label>
@@ -47,4 +47,4 @@ class ToDoForm extends Component {
   }
 }
 
-export default ToDoForm
+export default HobbyForm

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import ToDoList from './ToDoList';
+import Hobby from './Hobby';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<ToDoList />, document.getElementById('root'));
+ReactDOM.render(<Hobby />, document.getElementById('root'));
 registerServiceWorker();
