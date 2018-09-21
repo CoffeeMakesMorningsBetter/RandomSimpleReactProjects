@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import { format } from 'util';
+import React, { Component } from 'react'
+import './GiphyForm.css'
 
 class GiphyForm extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       findMeAGiphy: ''
@@ -12,29 +12,32 @@ class GiphyForm extends Component {
   }
 
   handleChange(e) {
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleSubmit(e) {
     e.preventDefault()
     this.props.search(this.state.findMeAGiphy)
-    this.setState({findMeAGiphy: ''})
+    this.setState({ findMeAGiphy: '' })
   }
 
   render() {
-    return(
-      <form onSubmit={this.handleSubmit}>
-        <label>Find Me A Giphy
-          <input
-            type="text"
-            name="findMeAGiphy"
-            value={this.state.findMeAGiphy}
-            onChange={this.handleChange}
-          />
-        </label>
-        <input type="submit">
-        </input>
-      </form>
+    return (
+      <div class="form">
+        <form onSubmit={this.handleSubmit}>
+          <label>Find Me A Giphy
+        <input
+              type="text"
+              name="findMeAGiphy"
+              value={this.state.findMeAGiphy}
+              onChange={this.handleChange}
+            />
+          </label>
+          <input type="submit">
+          </input>
+        </form>
+      </div>
+
     )
   }
 }

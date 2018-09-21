@@ -1,0 +1,32 @@
+*::after, *::before {
+  box-sizing: border-box;
+}
+
+body, .giphy {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+body {
+  text-align: center;
+  margin: 10px;
+  font-size: 1rem;
+}
+
+.giphy {
+  width: 80vw;
+  border: black solid 1px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.giphyBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+h1 {
+  margin-bottom: 0px;
+}

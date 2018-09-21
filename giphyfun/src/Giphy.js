@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GiphyForm from './GiphyForm'
 import {GiphyCard} from './GiphyCard'
+import './Giphy.css'
 
 class Giphy extends Component {
   constructor(props) {
@@ -32,9 +33,12 @@ class Giphy extends Component {
     let giphy = this.state.giphy.map((v,i) => <GiphyCard {...v} key={i}></GiphyCard>)
 
     return (
-      <div className="App">
+      <div className="giphy">
+        <h1>Giphy Generator</h1>
         <GiphyForm search={this.search} />
+        <div class="giphyBox">
         {giphy}
+        </div>
       </div>
     );
   }

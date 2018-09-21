@@ -1,0 +1,18 @@
+.giphyCard {
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  width: 400px;
+  background: pink;
+  margin: 1rem 0;
+  padding: 5px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+p {
+  border: 5px limegreen solid;
+}
