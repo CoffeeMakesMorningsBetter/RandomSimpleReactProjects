@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import pf from 'petfinder-client';
-import Pet from './Pet'
+import Pet from './Pet';
+import SearchBox from './SearchBox';
+import { Consumer } from './SearchContext';
 
 // API Client
 const petfinder = pf({
@@ -15,8 +17,21 @@ class Results extends Component {
       pets: []
     }
   }
+
+  // runs to populate data
   componentDidMount() {
-    petfinder.pet.find({ output: 'full', location: 'San Francisco, CA' })
+    this.search()
+  }
+  // will read from consumer context 
+  // need to search 
+  // create function with data inside componentDidMount ie: call it search
+  search = () => {
+    petfinder.pet.find({
+      output: 'full',
+      location: this.props.searchParams.location,
+      animal: this.props.searchParams.animal,
+      breed: this.props.searchParams.breed
+    })
       .then(data => {
         let pets
 
@@ -38,6 +53,7 @@ class Results extends Component {
   render() {
     return (
       <div className='search'>
+        <SearchBox search={this.search} />
         {this.state.pets.map(pet => {
           let breed
 
@@ -65,4 +81,13 @@ class Results extends Component {
   }
 }
 
-export default Results
+// allows Results to use component life cycle methods to results
+// Use an explicit function declaration because you can see in callstack error get a named function to see
+export default function ResultsWithContext(props) {
+  return (
+    <Consumer>
+      {context => <Results {...props} searchParams={context} />}
+    </Consumer>
+  );
+}
+
