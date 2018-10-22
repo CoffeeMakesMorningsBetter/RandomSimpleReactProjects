@@ -1,0 +1,18 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 60vw;
+  max-height: 50vh;
+}
+
+.container-button {
+  display: flex;
+  justify-content: space-around;
+}
