@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import uuidv4 from 'uuid/v4';
 import Todo from './Todo';
 import { connect } from 'react-redux';
-import { ADD_TODO } from './actions';
+import { ADD_TODO, REMOVE_TODO, UPDATE_STATUS } from './actions';
 
 
 class TodoList extends Component {
@@ -26,8 +26,26 @@ class TodoList extends Component {
     this.setState({task: ""})
   }
 
+  handleRemove = (id) => {
+    this.props.dispatch({
+      type: REMOVE_TODO,
+      id
+    })
+  }
+
+  updateStatus = (id) => {
+    this.props.dispatch({
+      type: UPDATE_STATUS,
+      id
+    })
+  }
+
+  renderTodo = todo => {
+    return (<Todo key={todo.id} task={todo.task} status={todo.status} id={todo.id} delete={this.handleRemove} updateStatus={this.updateStatus}/>)
+  }
+
   render() {
-    let task = this.props.task.map((todo) => <Todo key={uuidv4()} task={todo.task} status={todo.status}/>)
+    let task = this.props.task.map(this.renderTodo)
     return(
       <React.Fragment>
       <h1>My Todos</h1>
@@ -55,4 +73,12 @@ const mapStateToProps = (reduxState) => ({
   task: reduxState.task
 })
 
-export default connect(mapStateToProps)(TodoList)
+const mapDispatchToProps = (dispatch) => ({
+  addTodo: function(task) {
+    dispatch({
+      type: ADD_TODO
+    })
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)

@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO } from '../actions'
+import { ADD_TODO, REMOVE_TODO, UPDATE_STATUS} from '../actions'
 import uuidv4 from 'uuid/v4';
 
 const initital = {
