@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import uuidv4 from 'uuid/v4';
 import Todo from './Todo';
 import { connect } from 'react-redux';
-import { ADD_TODO, REMOVE_TODO, UPDATE_STATUS } from './actions';
+import { addTodo, removeTodo, updateStatus} from './actions';
 
 
 class TodoList extends Component {
@@ -19,25 +19,16 @@ class TodoList extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.dispatch({
-      type: ADD_TODO,
-      payload: { task: this.state.task, status: "incomplete", id: uuidv4() }
-    })
+    this.props.addTodo({ task: this.state.task, status: "incomplete", id: uuidv4() })
     this.setState({task: ""})
   }
 
   handleRemove = (id) => {
-    this.props.dispatch({
-      type: REMOVE_TODO,
-      id
-    })
+    this.props.removeTodo(id)
   }
 
   updateStatus = (id) => {
-    this.props.dispatch({
-      type: UPDATE_STATUS,
-      id
-    })
+    this.props.updateStatus(id)
   }
 
   renderTodo = todo => {
@@ -73,12 +64,12 @@ const mapStateToProps = (reduxState) => ({
   task: reduxState.task
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  addTodo: function(task) {
-    dispatch({
-      type: ADD_TODO
-    })
-  }
-})
+// const mapDispatchToProps = (dispatch) => ({
+//   addTodo: function(task) {
+//     dispatch({
+//       type: ADD_TODO
+//     })
+//   }
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
+export default connect(mapStateToProps, {addTodo, removeTodo, updateStatus})(TodoList)

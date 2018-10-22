@@ -6,9 +6,9 @@ class Todo extends Component {
   }
 
   updateItem = () => {
-    this.props.update(this.props.id)
+    this.props.updateStatus(this.props.id)
   }
-  
+
   render() {
     return (
       <div>
